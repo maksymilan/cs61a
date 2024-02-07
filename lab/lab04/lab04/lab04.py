@@ -120,7 +120,15 @@ def max_subseq(n, t):
     >>> max_subseq(12345, 1)
     5
     """
-    "*** YOUR CODE HERE ***"
+    if t == 0:
+        return 0
+    elif n < 10:
+        return n
+    else:
+        all_but_last,last = n//10,n%10
+        use_digit = max_subseq(all_but_last,t-1)*10 + last
+        not_use_digit = max_subseq(all_but_last,t)
+        return max(use_digit,not_use_digit)
 
 
 def add_chars(w1, w2):
@@ -149,5 +157,14 @@ def add_chars(w1, w2):
     ...       ['For', 'While', 'Set', 'SetComp']) # Must use recursion
     True
     """
-    "*** YOUR CODE HERE ***"
-
+    def add_chars_helper(w1,w2,add = ''):
+        if len(w1) == len(w2):
+            return add
+        elif w1 == '':
+            return add + w2
+        else:
+            if w1[0] == w2[0]:
+                return add_chars_helper(w1[1:],w2[1:],add)
+            else:
+                return add_chars_helper(w1,w2[1:],add + w2[0])
+    return add_chars_helper(w1,w2)

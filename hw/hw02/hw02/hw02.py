@@ -145,10 +145,10 @@ def count_coins(total):
     """
     def count_coins_helper(target,smallest_coin):
         if target == 0:
-            return 1
-        elif target < 0:
+            return 1#表示该方法成功count
+        elif target < 0:#当target-smallest_coi时，退出，表示该方法不能count
             return 0
-        elif not smallest_coin:
+        elif not smallest_coin:#当smallest_coin是25时，退出
             return 0
         else:
             next_coin = next_largest_coin(smallest_coin)
